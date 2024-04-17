@@ -5,6 +5,7 @@ import { Admin } from 'src/admin/admin.entity';
 
 @Entity()
 export class Voiture {
+    [x: string]: any;
     @PrimaryColumn({ unique: true })
     numImm: string;
 

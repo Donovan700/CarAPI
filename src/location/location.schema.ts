@@ -18,12 +18,19 @@ export const LocationSchema = new EntitySchema<Location>({
         nullable: false,
       },
       dateLocation: {
-        type: Date,
-        nullable: false,
+        type: Date
       },
       isPayer: {
         type: Boolean
       },
+      numPermis: {
+        type: Number,
+        nullable: false,
+      },
+      numImm: {
+        type: String,
+        nullable: false,
+      }
     },
     relations: {
         client: {

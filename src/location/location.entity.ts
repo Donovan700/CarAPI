@@ -13,11 +13,17 @@ export class Location {
     @Column({nullable: false})
     dateFin: Date;
 
-    @Column({nullable: false})
+    @Column()
     dateLocation: Date;
 
     @Column({ default: false })
     isPayer: boolean;
+
+    @Column({ nullable: false})
+    numPermis: number;
+
+    @Column({ nullable: false })
+    numImm: string;
 
     @ManyToOne(() => Client, client => client.location)
     client: Client;

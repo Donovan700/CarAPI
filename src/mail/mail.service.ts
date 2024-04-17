@@ -10,7 +10,7 @@ export class MailService {
       service: 'gmail',
       auth: {
         user: 'bryanrakotosedson@gmail.com',
-        pass: process.env.PASSWORD,
+        pass: 'ntum zwco iyrp mzyd',
       },
     });
   }
