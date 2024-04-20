@@ -41,23 +41,4 @@ export class VoitureService {
         .limit(5)
         .getMany();
     }
-
-    async totalPrice(numPermis: string, dateLocation: Date): Promise<number> {
-      const locations = await this.VoitureRepository
-          .createQueryBuilder('voiture')
-          .innerJoin('voiture.location', 'location')
-          .innerJoin('location.client', 'client')
-          .select(['location', 'voiture.prixJournalier', 'location.dateDeb', 'location.dateFin'])
-          .where('location.dateLocation = :dateLocation', { dateLocation })
-          .andWhere('client.numPermis = :numPermis', { numPermis })
-          .getMany();
-  
-      let totalPrice = 0;
-      locations.forEach(location => {
-          const days = Math.ceil((location.dateFin.getTime() - location.dateDeb.getTime()) / (1000 * 60 * 60 * 24));
-          totalPrice += location.prixJournalier * days;
-      });
-  
-      return totalPrice;
-  }
 }

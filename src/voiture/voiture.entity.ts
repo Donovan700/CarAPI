@@ -5,7 +5,6 @@ import { Admin } from 'src/admin/admin.entity';
 
 @Entity()
 export class Voiture {
-    [x: string]: any;
     @PrimaryColumn({ unique: true })
     numImm: string;
 
@@ -40,7 +39,7 @@ export class Voiture {
     location: Location[];
 
     @ManyToOne(() => Categorie, categorie => categorie.voiture)
-    categorie: Categorie;    
+    categorie: Categorie;
 
     @ManyToOne(() => Admin, admin => admin.voiture)
     admin: Admin;

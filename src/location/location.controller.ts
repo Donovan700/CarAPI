@@ -16,6 +16,15 @@ export class LocationController {
     return this.LocationService.findOne(+id);
   }
 
+  @Get('price/:numPermis/:dateLocation')
+  async totalPrice(
+      @Param('numPermis') numPermis: number,
+      @Param('dateLocation') dateLocation: string
+  ): Promise<number> {
+      const parsedDate = new Date(dateLocation);
+      return this.LocationService.totalPrice(numPermis, parsedDate);
+  }
+
   @Post()
   async create(@Body() LocationData: Partial<Location>): Promise<Location> {
     return this.LocationService.create(LocationData);

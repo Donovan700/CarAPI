@@ -11,6 +11,10 @@ export class ClientService {
   ) {}
 
   async findAll(): Promise<Client[]> {
+    const clients = this.clientRepository.find();
+    (await clients).forEach(elem => {
+      console.log(elem.nomClient);
+    });
     return this.clientRepository.find();
   }
 

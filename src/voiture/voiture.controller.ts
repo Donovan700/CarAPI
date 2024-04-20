@@ -21,15 +21,6 @@ export class VoitureController {
     return this.VoitureService.topMostRented();
   }
 
-  @Get('price/:numPermis/:dateLocation')
-  async totalPrice(
-      @Param('numPermis') numPermis: string,
-      @Param('dateLocation') dateLocation: string
-  ): Promise<number> {
-      const parsedDate = new Date(dateLocation);
-      return this.VoitureService.totalPrice(numPermis, parsedDate);
-  }
-
   @Post()
   async create(@Body() voitureData: Partial<Voiture>): Promise<Voiture> {
     const existingVoiture = await this.VoitureService.findOne(voitureData.numImm);
