@@ -7,6 +7,7 @@ import { Client } from '../client/client.entity';
 import { Location } from '../location/location.entity';
 import { Voiture } from '../voiture/voiture.entity';
 import { ClientService } from 'src/client/client.service';
+import { LocationService } from 'src/location/location.service';
 
 @Module({
   imports: [
@@ -14,6 +15,6 @@ import { ClientService } from 'src/client/client.service';
     TypeOrmModule.forFeature([Client, Location, Voiture]),
   ],
   controllers: [MailController],
-  providers: [MailService, ClientService],
+  providers: [MailService, ClientService, LocationService],
 })
 export class MailModule {}

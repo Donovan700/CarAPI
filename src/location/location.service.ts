@@ -88,7 +88,7 @@ export class LocationService {
             }
           })
         }
-        else console.log(location.isPayer);
+        else console.log('No Location made at ',dataDateLocation,' by ',numPermis);
       });
 
       return totalPrice;
