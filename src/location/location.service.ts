@@ -120,5 +120,32 @@ export class LocationService {
     
       return cars;
     }
+
+    async searchFreeCar(dateDeb: Date, dateFin: Date): Promise<string[]> {
+      const freeCars: string[] = [];
+      const dataDateDeb = dateDeb.toISOString().split('T')[0];
+      const dataDateFin = dateDeb.toISOString().split('T')[0];
+      
+      const locations = await this.LocationRepository.find();
+      const voitures = await this.VoitureRepository.find();
+    
+      voitures.forEach(voiture => {
+        let isFree = true;
+        
+        locations.forEach(location => {
+          if ( location.numImm == voiture.numImm && dataDateDeb >= location.dateDeb.toISOString().split('T')[0] && dataDateFin <= location.dateFin.toISOString().split('T')[0]) {
+            isFree = false;
+            console.log(isFree);
+            if (isFree) {
+              console.log(isFree);
+              freeCars.push(voiture.model);
+            }
+          }
+        });
+      
+      });
+    
+      return freeCars;
+    }
     
   }
