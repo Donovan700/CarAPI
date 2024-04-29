@@ -23,9 +23,10 @@ export class MailController {
       }
       const dateLocation: Date = new Date(dateLocationString);
       const totalPrice: number = await this.locationService.totalPrice(numPermis, dateLocation);
+      const allCars : string[] = await this.locationService.allRentedCar(numPermis, dateLocation);
       const provider : string = 'bryanrakotosedson@gmail.com';
       const subject : string = 'Car Rent Enterprise confirmation bill';
-      const content: string = `Dear ${client.nomClient},\nYou are receiving this email as a confirmation of renting our cars. Please attend to pay the amount of ${totalPrice} Ar. Thank you.`;
+      const content: string = `Dear ${client.nomClient},\nYou are receiving this email as a confirmation of renting our cars(${allCars}). Please attend to pay the amount of ${totalPrice} Ar. Thank you.`;
       await this.mailService.sendMail(provider, client.email, subject, content);
 
       return { success: true, message: 'Success', error: 'No error' };
