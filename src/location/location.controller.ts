@@ -25,6 +25,15 @@ export class LocationController {
       return this.LocationService.totalPrice(numPermis, parsedDate);
   }
 
+  @Get('cars/:numPermis/:dateLocation')
+  async allRentedCar(
+    @Param('numPermis') numPermis: number,
+    @Param('dateLocation') dateLocation: string
+  ): Promise<string[]> {
+    const parsedDate = new Date(dateLocation);
+    return this.LocationService.allRentedCar(numPermis, parsedDate);
+  }
+
   @Post()
   async create(@Body() LocationData: Partial<Location>): Promise<Location> {
     return this.LocationService.create(LocationData);

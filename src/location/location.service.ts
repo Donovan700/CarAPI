@@ -93,5 +93,32 @@ export class LocationService {
 
       return totalPrice;
     }
+
+    async allRentedCar(numPermis: number, dateLocation: Date): Promise<string[]> {
+    
+      const cars: string[] = [];
+      const modelsSet = new Set<string>();
+    
+      const locations = await this.LocationRepository.find();
+      const voitures = await this.VoitureRepository.find();
+    
+      locations.forEach(location => {
+        const dataDateLocation = location.dateLocation.toISOString().split('T')[0];
+        if (location.numPermis == numPermis && dataDateLocation == dateLocation.toISOString().split('T')[0]) {
+          const matricule = location.numImm;
+          console.log("Vehicle matricule: ",matricule);
+            voitures.forEach(voiture => {
+                if (matricule == voiture.numImm && !modelsSet.has(voiture.model)) {
+                  cars.push(voiture.model);
+                  modelsSet.add(voiture.model);
+                }
+            });
+        }
+      });
+
+      console.log(cars);
+    
+      return cars;
+    }
     
   }
