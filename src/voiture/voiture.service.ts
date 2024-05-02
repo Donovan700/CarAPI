@@ -38,7 +38,7 @@ export class VoitureService {
         .leftJoinAndSelect("voiture.location", "location")
         .groupBy("voiture.numImm")
         .orderBy("COUNT(location)", "DESC")
-        .limit(5)
+        .limit(3)
         .getMany();
     }
 }
