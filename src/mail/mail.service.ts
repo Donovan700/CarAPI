@@ -9,7 +9,7 @@ export class MailService {
     this.transporter = nodemailer.createTransport({
       service: 'gmail',
       auth: {
-        user: 'bryanrakotosedson@gmail.com',
+        user: 'yourmail@gmail.com',
         pass: 'ntum zwco iyrp mzyd',
       },
     });
